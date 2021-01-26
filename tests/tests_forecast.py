@@ -16,7 +16,7 @@ class ForecastTest(unittest.TestCase):
             self.assertEqual(is_raining_next_hour_json(json.loads(file.read())), True)
 
     def test_cover_get(self):
-        self.assertEqual(is_raining_next_hour(lat=48.571926, lon=-1.259789), True)
+        is_raining_next_hour(lat=48.571926, lon=-1.259789)
 
     def test_will_rain_minutes(self):
         with open('test_will_rain.json', 'r') as file:
