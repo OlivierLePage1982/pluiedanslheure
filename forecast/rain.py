@@ -27,7 +27,7 @@ def minutes_to_rain_json(content) -> int:
     return -1
 
 
-def is_raining_next_hour(lat=common.constants.default_lat, lon=common.constants.default_lon):
+def is_raining_next_hour(lat=common.constants.default_lat, lon=common.constants.default_lon) -> bool:
     url = common.constants.rain_url.format(lat=lat, lon=lon)
     if common.constants.debug:
         print(url)
@@ -35,5 +35,17 @@ def is_raining_next_hour(lat=common.constants.default_lat, lon=common.constants.
 
     if response.status_code == requests.codes.ok:
         return is_raining_next_hour_json(response.json())
+    else:
+        raise Exception('Response error code: ' + str(response.status_code))
+
+
+def minutes_to_rain(lat=common.constants.default_lat, lon=common.constants.default_lon) -> int:
+    url = common.constants.rain_url.format(lat=lat, lon=lon)
+    if common.constants.debug:
+        print(url)
+    response = requests.get(url)
+
+    if response.status_code == requests.codes.ok:
+        return minutes_to_rain_json(response.json())
     else:
         raise Exception('Response error code: ' + str(response.status_code))
