@@ -22,7 +22,7 @@ def minutes_to_rain_json(content) -> int:
             rain_time = datetime.datetime.strptime(timeslot["time"], '%Y-%m-%dT%H:%M:%S.%fZ')
             minutes = int(rain_time.timestamp() - update_time.timestamp())//60
             if common.constants.debug:
-                print('Rain in ' + str(minutes) + ' mins' if minutes > 0 else 'No rain in next 60 minutes')
+                print('Rain in ' + str(minutes) + ' minutes' if minutes > 0 else 'No rain in next 60 minutes')
             return minutes
     return -1
 
