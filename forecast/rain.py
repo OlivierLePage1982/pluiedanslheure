@@ -1,6 +1,7 @@
 import requests
 import common.constants
-import datetime
+from datetime import datetime, timedelta
+import logging
 
 
 def is_raining_next_hour_json(content) -> bool:
@@ -16,10 +17,12 @@ def is_raining_next_hour_json(content) -> bool:
 
 
 def minutes_to_rain_json(content) -> int:
-    update_time = datetime.datetime.strptime(content["update_time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+    update_time = datetime.now() - timedelta(hours=1, minutes=0)
+    logging.info('Date courante: ' + str(update_time))
     for timeslot in content["properties"]["forecast"]:
         if int(timeslot['rain_intensity']) > 1:
-            rain_time = datetime.datetime.strptime(timeslot["time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+            rain_time = datetime.strptime(timeslot["time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+            logging.info('Date pluie: ' + str(rain_time))
             minutes = int(rain_time.timestamp() - update_time.timestamp())//60
             if common.constants.debug:
                 print('Rain in ' + str(minutes) + ' minutes' if minutes > 0 else 'No rain in next 60 minutes')

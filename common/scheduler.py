@@ -8,8 +8,8 @@ class Scheduler:
 
     def start(self):
         while True:
-            time.sleep(self.delay)
             self.callback()
+            time.sleep(self.delay)
 
     def update(self, delay):
         self.delay = delay
