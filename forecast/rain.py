@@ -17,7 +17,7 @@ def is_raining_next_hour_json(content) -> bool:
 
 
 def minutes_to_rain_json(content) -> int:
-    update_time = datetime.now() - timedelta(hours=1, minutes=0)
+    update_time = datetime.now()  # - timedelta(hours=1, minutes=0)
     logging.info('Date courante: ' + str(update_time))
     for timeslot in content["properties"]["forecast"]:
         if int(timeslot['rain_intensity']) > 1:
