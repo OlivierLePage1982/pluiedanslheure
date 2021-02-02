@@ -13,4 +13,5 @@ def home():
         return "<h1 style='color: green'>Pas de pluie pendant 1 heure</h1>"
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
