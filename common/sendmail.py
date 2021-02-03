@@ -1,4 +1,5 @@
 import smtplib
+import logging
 
 
 def send_mail(subject: str, message: str) -> bool:
@@ -12,7 +13,7 @@ def send_mail(subject: str, message: str) -> bool:
         try:
             server.sendmail(from_address, to_addresses, msg)
         except smtplib.SMTPException as e:
-            print(e)
+            logging.error(e)
             return False
         server.quit()
     return True

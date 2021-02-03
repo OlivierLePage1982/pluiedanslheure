@@ -4,6 +4,7 @@ from forecast.rain import is_raining_next_hour
 from forecast.rain import minutes_to_rain_json
 from forecast.rain import minutes_to_rain
 import json
+import datetime
 
 
 class ForecastTest(unittest.TestCase):
@@ -22,8 +23,12 @@ class ForecastTest(unittest.TestCase):
 
     def test_will_rain_minutes(self):
         with open('test_will_rain.json', 'r') as file:
-            self.assertEqual(minutes_to_rain_json(json.loads(file.read())), 25)
+            content = json.loads(file.read())
+            update_time = datetime.datetime.strptime(content["update_time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+            self.assertEqual(minutes_to_rain_json(content, update_time), 25)
 
     def test_will_not_rain_minutes(self):
         with open('test_will_not_rain.json', 'r') as file:
-            self.assertEqual(minutes_to_rain_json(json.loads(file.read())), -1)
+            content = json.loads(file.read())
+            update_time = datetime.datetime.strptime(content["update_time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+            self.assertEqual(minutes_to_rain_json(content, update_time), -1)
