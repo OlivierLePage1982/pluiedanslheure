@@ -3,6 +3,7 @@ import logging
 from sys import stdout
 from common import scheduler
 from common import sendmail
+from common import sendpush
 from tests import test_state
 
 
@@ -18,7 +19,8 @@ def loop():
                      )
     if state.notify_rain(minutes):
         logging.warning('Notification: Rain within ' + str(minutes) + ' minutes')
-        sendmail.send_mail('Pluie dans ' + str(minutes) + ' minutes', "A l'abri !!!")
+        for notify in [sendmail.send_mail, sendpush.send_push]:
+            notify('Pluie dans ' + str(minutes) + ' minutes', 'A l\'abri !!!')
 
 
 if __name__ == '__main__':
@@ -26,7 +28,6 @@ if __name__ == '__main__':
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.DEBUG,
                         stream=stdout)
-    # logging.info('Minutes avant la pluie : ' + str(minutes_to_rain()))
 
     sched = scheduler.Scheduler(delay=60*5, callback=loop)
     sched.start()
