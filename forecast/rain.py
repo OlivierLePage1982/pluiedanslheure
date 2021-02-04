@@ -16,7 +16,7 @@ def is_raining_next_hour_json(content) -> bool:
     return rain
 
 
-def minutes_to_rain_json(content, update_time=datetime.now()) -> int:
+def minutes_to_rain_json(content, update_time) -> int:
     logging.info('Current date: ' + str(update_time))
     for timeslot in content["properties"]["forecast"]:
         if int(timeslot['rain_intensity']) > 1:
@@ -48,6 +48,6 @@ def minutes_to_rain(lat=common.constants.default_lat, lon=common.constants.defau
     response = requests.get(url)
 
     if response.status_code == requests.codes.ok:
-        return minutes_to_rain_json(response.json())
+        return minutes_to_rain_json(response.json(), datetime.now())
     else:
         raise Exception('Response error code: ' + str(response.status_code))
