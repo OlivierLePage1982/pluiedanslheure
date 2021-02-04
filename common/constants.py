@@ -7,6 +7,6 @@ rain_url = 'https://rpcache-aa.meteofrance.com/internet2018client/2.0/nowcast/' 
 default_lat = 48.571926
 default_lon = -1.259789
 push_url = 'https://api.pushbullet.com/v2/pushes'
-push_token = os.environ('PUSHBULLET_TOKEN')
+push_token = os.environ['PUSHBULLET_TOKEN']
 if debug:
     print(push_token)
