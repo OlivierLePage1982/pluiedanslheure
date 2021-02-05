@@ -5,8 +5,8 @@ import common.constants
 
 def send_push(subject: str, message: str) -> bool:
     logging.info('Pushing notification to PushBullet device')
-    response = requests.post(common.constants.push_url,
-                             headers={'Access-Token': common.constants.push_token,
+    response = requests.post(common.constants.PUSH_URL,
+                             headers={'Access-Token': common.constants.PUSH_TOKEN,
                                       'Content-type': 'application/json'},
                              json={'body': message,
                                    'title': subject,
