@@ -1,7 +1,5 @@
 import unittest
-from forecast.rain import is_raining_next_hour_json
 from forecast.rain import minutes_to_rain_json
-from forecast.rain import minutes_to_rain
 import json
 import datetime
 
