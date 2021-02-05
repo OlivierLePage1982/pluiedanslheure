@@ -11,7 +11,10 @@ def send_push(subject: str, message: str) -> bool:
                              json={'body': message,
                                    'title': subject,
                                    'type': 'note'})
-    logging.info(response.json())
+    if response.status_code == requests.codes.ok:
+        logging.info('Push notification sent successfully')
+    else:
+        logging.warning('Unable to send push notification: ' + response.json())
     return True
 
 

@@ -2,6 +2,7 @@ import smtplib
 import logging
 import common.constants
 
+
 def send_mail(subject: str, message: str) -> bool:
     with smtplib.SMTP('smtp.live.com') as server:
         server.starttls()
@@ -12,8 +13,9 @@ def send_mail(subject: str, message: str) -> bool:
 
         try:
             server.sendmail(from_address, to_addresses, msg)
+            logging.info('Mail notification sent to ' + to_addresses.join('|') + 'successfully')
         except smtplib.SMTPException as e:
-            logging.error(e)
+            logging.warning('Unable to send mail notification: ', e)
             return False
         server.quit()
     return True

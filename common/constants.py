@@ -1,10 +1,10 @@
 import os
 
 # Environment variables
-RAIN_TOKEN = os.environ['RAIN_TOKEN']
-PUSH_TOKEN = os.environ['PUSHBULLET_TOKEN']
-SMTP_USERNAME = os.environ['SMTP_USERNAME']
-SMTP_PASSWORD = os.environ['SMTP_PASSWORD']
+RAIN_TOKEN = os.environ.get('RAIN_TOKEN', default='')
+PUSH_TOKEN = os.environ.get('PUSHBULLET_TOKEN', default='')
+SMTP_USERNAME = os.environ.get('SMTP_USERNAME', default='')
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', default='')
 
 # Global constants
 DEBUG = True
@@ -14,6 +14,3 @@ DEFAULT_LAT = 48.571926
 DEFAULT_LON = -1.259789
 PUSH_URL = 'https://api.pushbullet.com/v2/pushes'
 
-if DEBUG:
-    print('PUSHBULLET: ' + PUSH_TOKEN)
-    print('RAIN: ' + RAIN_TOKEN)
