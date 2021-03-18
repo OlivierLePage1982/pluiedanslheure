@@ -15,8 +15,7 @@ def loop():
     if minutes >= 0:
         logging.info('Rain within ' + str(minutes) + ' minutes')
     else:
-        logging.info('No rain in next hour'
-                     )
+        logging.info('No rain in next hour')
     if state.notify_rain(minutes):
         logging.warning('Notification: Rain within ' + str(minutes) + ' minutes')
         for notify in [sendmail.send_mail, sendpush.send_push]:
