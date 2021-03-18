@@ -27,7 +27,7 @@ def minutes_to_rain_json(content, update_time) -> int:
     for timeslot in content["properties"]["forecast"]:
         if int(timeslot['rain_intensity']) > 1:
             rain_time = datetime.strptime(timeslot["time"], '%Y-%m-%dT%H:%M:%S.%fZ')
-            logging.info('Rain date: ' + str(rain_time) + ', Intensity: ' + timeslot['rain_intensity'])
+            logging.info('Rain date: ' + str(rain_time) + ', Intensity: ' + str(timeslot['rain_intensity']))
             minutes = int(rain_time.timestamp() - update_time.timestamp())//60
             if common.constants.DEBUG:
                 logging.debug('Rain in ' + str(minutes) + ' minutes' if minutes > 0 else 'No rain in next 60 minutes')
