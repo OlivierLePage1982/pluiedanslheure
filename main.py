@@ -1,13 +1,14 @@
+import forecast.state
 from forecast.rain import minutes_to_rain
 import logging
 from sys import stdout
 from common import scheduler
 from common import sendmail
 from common import sendpush
-from tests import test_state
+from forecast import state
 
 
-state = test_state.RainNotificationStateMachine()
+state = forecast.state.RainNotificationStateMachine()
 
 
 def loop():
