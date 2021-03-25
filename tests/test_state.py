@@ -54,3 +54,13 @@ class StateMachineTest(unittest.TestCase):
         self.assertEqual(False, state.notify_rain(10))
         # Fourth update, rain in 5 mins => notification
         self.assertEqual(True, state.notify_rain(5))
+
+    def test_rain_bug(self):
+        state = RainNotificationStateMachine()
+        self.assertEqual(False, state.notify_rain(-1))
+        self.assertEqual(False, state.notify_rain(32))
+        self.assertEqual(False, state.notify_rain(27))
+        self.assertEqual(True, state.notify_rain(22))
+        self.assertEqual(False, state.notify_rain(17))
+        self.assertEqual(False, state.notify_rain(12))
+        self.assertEqual(False, state.notify_rain(7))
