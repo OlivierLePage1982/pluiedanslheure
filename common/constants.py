@@ -10,7 +10,7 @@ SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', default='')
 DEBUG = True
 RAIN_URL = 'https://rpcache-aa.meteofrance.com/internet2018client/2.0/nowcast/' \
            'rain?lat={lat}&lon={lon}&token=' + RAIN_TOKEN
-DEFAULT_LAT = 48.571926
-DEFAULT_LON = -1.259789
+DEFAULT_LAT = 48.596866
+DEFAULT_LON = -1.252042
 PUSH_URL = 'https://api.pushbullet.com/v2/pushes'
 
