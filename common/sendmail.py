@@ -14,7 +14,7 @@ def send_mail(subject: str, message: str) -> bool:
         try:
             server.sendmail(from_address, to_addresses, msg)
             logging.info('Mail notification sent to ' + '|'.join(to_addresses) + ' successfully')
-        except smtplib.SMTPException as e:
+        except Exception as e:
             logging.warning('Unable to send mail notification: ', e)
             return False
         server.quit()
